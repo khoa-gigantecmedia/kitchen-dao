@@ -189,19 +189,6 @@ const App = () => {
     }
   };
 
-  console.log({ network });
-  if (network?.[0].data?.chain?.id !== ChainId.Rinkeby) {
-    return (
-      <div className="unsupported-network">
-        <h2>Please connect to Rinkeby</h2>
-        <p>
-          This dapp only works on the Rinkeby network, please switch networks in
-          your connected wallet.
-        </p>
-      </div>
-    );
-  }
-
   // This is the case where the user hasn't connected their wallet
   // to your web app. Let them call connectWallet.
   if (!address) {
@@ -211,6 +198,18 @@ const App = () => {
         <button onClick={connectWithMetamask} className="btn-hero">
           Connect your wallet
         </button>
+      </div>
+    );
+  }
+
+  if (network?.[0].data?.chain?.id !== ChainId.Rinkeby) {
+    return (
+      <div className="unsupported-network">
+        <h2>Please connect to Rinkeby</h2>
+        <p>
+          This dapp only works on the Rinkeby network, please switch networks in
+          your connected wallet.
+        </p>
       </div>
     );
   }
